@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "悠悠有品用户标识",
+  "version": "1.0.0",
+  "description": "为悠悠有品网站添加用户ID显示和自定义备注功能",
+
+  "permissions": [
+    "storage",
+    "contextMenus",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "https://www.youpin898.com/*",
+    "https://api.youpin898.com/*"
+  ],
+
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.youpin898.com/*"],
+      "js": [
+        "utils/constants.js",
+        "utils/storage.js",
+        "scripts/content.js"
+      ],
+      "css": ["styles/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["scripts/injector.js"],
+      "matches": ["https://www.youpin898.com/*"]
+    }
+  ],
+
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
